@@ -1,6 +1,6 @@
 # 💪 Improving code quality with Pylint based on PEP8
 
-*by. 반재광, 손유진, 이진영, 이홍주, 정일균*
+*by. 반재광, 손유진, 이진영, 이홍주, 정일균*<br>
 *project purpose: pep8 & pylint 활용한 자기주도 학습 프로세스 구성 및 이해*
 
 # 1. 기존 코드 📝
