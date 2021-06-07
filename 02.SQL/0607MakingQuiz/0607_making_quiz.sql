@@ -135,7 +135,7 @@ end;
 
 -- 5. job을 입력받아 해당 job의 평균 급여를 구해주는 함수를 만드세요.(함수명 : avg_sal_job)
 -- 모범 답안
-create or replace function job_avg(v_job emp.job%type)
+create or replace function avg_sal_job(v_job emp.job%type)
 return emp.sal%type 
 is 
     v_sal emp.sal%type;
