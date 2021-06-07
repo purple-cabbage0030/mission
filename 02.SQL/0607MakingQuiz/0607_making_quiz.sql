@@ -24,12 +24,12 @@ begin
     where empno = v_empno;
 
     if v_sal >= 1000 then
-        v_star_num := trunc(v_sal/1000);
-        for i in 1..v_star_num loop
-            v_star := v_star||'*';
-        end loop;
+       v_star_num := trunc(v_sal/1000);
+       for i in 1..v_star_num loop
+           v_star := v_star||'*';
+       end loop;
     else
-        dbms_output.put_line('적용 대상이 아닙니다.');
+       dbms_output.put_line('적용 대상이 아닙니다.');
     end if;
     
     dbms_output.put_line(v_star);
