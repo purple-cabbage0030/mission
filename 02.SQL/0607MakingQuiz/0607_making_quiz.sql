@@ -117,7 +117,7 @@ when not matched then
 
 
 
--- 4. 부서번호를 입력하면 해당 부서에서 근무 사원 수를 반환하는 함수
+-- 4. 부서번호를 입력하면 해당 부서에서 근무 사원 수를 반환하는 함수 (hr table사용)
 -- 모범 답안
 create or replace function get_emp_count(deptno employees.department_id%type)
 return number
