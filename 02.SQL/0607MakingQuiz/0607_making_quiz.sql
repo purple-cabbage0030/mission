@@ -50,7 +50,7 @@ end;
       7566 JONES                RESEARCH                          35700
 */
 
--- 모범 
+-- 모범 답안
 select *
 from(
 	select empno, ename, dname, (sal*12 + nvl(comm,0)) as 연봉
@@ -101,7 +101,7 @@ insert all
 select * from dual;
 */
 
--- 모범 
+-- 모범 답안
 merge into warehouse w 
 using sold s
 on (w.product_no = s.product_no)
