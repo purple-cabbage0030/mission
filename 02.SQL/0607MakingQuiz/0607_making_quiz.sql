@@ -109,3 +109,17 @@ when matched then
 	update set w.amount = w.amount+i.amount
 when not matched then 
 	insert values (i.product_no, i.amount);
+
+
+부서번호를 입력하면 해당 부서에서 근무한느 사원 수를 반환하는 함수
+create or replace function get_emp_count(deptno employees.department_id%type)
+return number
+is
+emp_count number;
+begin
+select count(*) into emp_count
+from employees
+where department_id = deptno;
+return emp_count;
+end;
+/
