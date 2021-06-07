@@ -127,7 +127,7 @@ is
     v_sal emp.sal%type;
 begin 
     select avg(sal) 
-    into v_sal 
+         into v_sal 
     from emp 
     where v_job=job;
     return v_sal;
