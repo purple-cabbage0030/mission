@@ -31,11 +31,10 @@ begin
        for i in 1..v_star_num loop
            v_star := v_star||'*';
        end loop;
+       dbms_output.put_line(v_star);
     else
        dbms_output.put_line('적용 대상이 아닙니다.');
     end if;
-    
-    dbms_output.put_line(v_star);
 end;
 /
 
