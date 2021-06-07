@@ -6,4 +6,6 @@
   <li>Quiz & answers ➡️ <a href="https://github.com/purple-cabbage0030/mission/blob/main/02.SQL/0607MakingQuiz/0607_making_quiz.sql"> codes </a></li>
 </ol>
 
-<h2>Feedback</h2>
+<h2><a href="https://docs.google.com/document/d/1HWT7cVAcz_nMq4Rfq0kv5Xy2f4Ye3ex51MSdXfTBO3s/edit">Feedback</a></h2>
+ <li>문제 난이도를 고려한 배치 요망</li>
+ 
