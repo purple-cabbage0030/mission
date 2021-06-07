@@ -133,16 +133,17 @@ end;
 /
 select avg_sal_job('CLERK') from dual;
 
--- 5. 부서번호를 입력하면 해당 부서에서 근무 사원 수를 반환하는 함수 (hr table사용)
+-- 5. 부서번호를 입력하면 해당 부서에서 근무 사원 수를 반환하는 함수 
 -- 모범 답안
-create or replace function get_emp_count(deptno employees.department_id%type)
+
+create or replace function get_emp_count(deptno_ emp.deptno%type)
 return number
 is
-    emp_count number;
+emp_count number;
 begin
-    select count(*) into emp_count
-    from employees
-    where department_id = deptno;
-    return emp_count;
+	select count(*) into emp_count
+	from emp
+	where deptno = deptno_;
+	return emp_count;
 end;
 /
