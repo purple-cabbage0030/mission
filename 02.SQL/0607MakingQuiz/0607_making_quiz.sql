@@ -1,6 +1,8 @@
 
 
--- 월급여가 1000 달러 이상인 사원만을 대상으로, 1000달러 당 별표시(*) 한 개가 출력되도록 하세요.
+
+-- 1. 월급여가 1000 달러 이상인 사원만을 대상으로, 1000달러 당 별표시(*) 한 개가 출력되도록 하세요.
+
 /*입출력 예시
 입력값(empno): 7369
 출력값: 적용 대상이 아닙니다.
@@ -12,6 +14,7 @@
 출력값: *****
 */
 
+-- 모범 답안
 declare
     v_empno emp.empno%type := &eno;
     v_sal emp.sal%type;
@@ -36,15 +39,18 @@ begin
 end;
 /
 
---? 연봉(sal*12 + comm)이 높은 상위 3명의 사원번호, 이름, 부서이름, 연봉을 조회하세요.
 
--- 출력 예시
+
+-- 2. 연봉(sal*12 + comm)이 높은 상위 3명의 사원번호, 이름, 부서이름, 연봉을 조회하세요.
+
+/* 출력 예시
      EMPNO ENAME                DNAME                              연봉
 ---------- -------------------- ---------------------------- ----------
       7839 KING                 ACCOUNTING                        60000
       7902 FORD                 RESEARCH                          36000
       7566 JONES                RESEARCH                          35700
-      
+*/
+
 select *
 from(
 	select empno, ename, dname, (sal*12 + nvl(comm,0)) as 연봉
@@ -55,7 +61,7 @@ from(
 where rownum  <= 3;
 
 
---아래 제시된 테이블을 이용하여 warehouse 테이블을 기준으로 sold 테이블 제품들의 재고(amount) 수량을 빼고
+-- 3. 아래 제시된 테이블을 이용하여 warehouse 테이블을 기준으로 sold 테이블 제품들의 재고(amount) 수량을 빼고
 --input 테이블 제품들의 경우 수량을 더하여(warehouse에 없는 제품이 있다면 추가한다.) merge를 통해 warehouse 테이블의
 --최종 재고 결과를 출력하세요.
 
@@ -95,7 +101,7 @@ insert all
 select * from dual;
 */
 
---해답
+-- 
 merge into warehouse w 
 using sold s
 on (w.product_no = s.product_no)
@@ -111,15 +117,22 @@ when not matched then
 	insert values (i.product_no, i.amount);
 
 
-부서번호를 입력하면 해당 부서에서 근무한느 사원 수를 반환하는 함수
+
+-- 4. 부서번호를 입력하면 해당 부서에서 근무 사원 수를 반환하는 함수
+-- 모범 답안
 create or replace function get_emp_count(deptno employees.department_id%type)
 return number
 is
-emp_count number;
+    emp_count number;
 begin
-select count(*) into emp_count
-from employees
-where department_id = deptno;
-return emp_count;
+    select count(*) into emp_count
+    from employees
+    where department_id = deptno;
+    return emp_count;
 end;
 /
+
+
+
+-- 5.
+
