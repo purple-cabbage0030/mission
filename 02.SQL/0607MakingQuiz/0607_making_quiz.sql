@@ -53,3 +53,59 @@ from(
 	order by (sal*12 + nvl(comm,0)) desc
 )
 where rownum  <= 3;
+
+
+--아래 제시된 테이블을 이용하여 warehouse 테이블을 기준으로 sold 테이블 제품들의 재고(amount) 수량을 빼고
+--input 테이블 제품들의 경우 수량을 더하여(warehouse에 없는 제품이 있다면 추가한다.) merge를 통해 warehouse 테이블의
+--최종 재고 결과를 출력하세요.
+
+/* 제시된 TABLE
+
+create table sold(
+	product_no varchar2(5), 
+	amount number(2)
+);
+create table input(
+	product_no varchar2(5), 
+	amount number(2)
+);
+create table warehouse(
+	product_no varchar2(5), 
+	amount number(2)
+);
+
+insert all
+	into warehouse values('1001', 12)
+	into warehouse values('1002', 3)
+	into warehouse values('1003', 6)
+	into warehouse values('1004', 7)
+	into warehouse values('1005', 15)
+	into warehouse values('1006', 4)
+	into warehouse values('1007', 11)
+	into warehouse values('1008', 3)
+	into warehouse values('1009', 17)
+	into input values('1001',3)
+	into input values('1002',6)
+	into input values('1003',2)
+	into input values('1008',10)
+	into input values('1010',2)
+	into sold values('1003',5)
+	into sold values('1007',4)
+	into sold values('1009',11)
+select * from dual;
+*/
+
+--해답
+merge into warehouse w 
+using sold s
+on (w.product_no = s.product_no)
+when matched then 
+	update set w.amount = w.amount-s.amount;
+
+merge into warehouse w 
+using input i
+on (w.product_no = i.product_no)
+when matched then 
+	update set w.amount = w.amount+i.amount
+when not matched then 
+	insert values (i.product_no, i.amount);
