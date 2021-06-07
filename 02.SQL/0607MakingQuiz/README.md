@@ -7,5 +7,8 @@
 </ol>
 
 <h2><a href="https://docs.google.com/document/d/1HWT7cVAcz_nMq4Rfq0kv5Xy2f4Ye3ex51MSdXfTBO3s/edit">Feedback</a></h2>
- <li>문제 난이도를 고려한 배치 요망</li>
+<img src="feedback.jpg" width="100%">
  
+<h2>Modifications based on feedback</h2>
+<li>Rearranged the order considering the difficulty</li>
+
