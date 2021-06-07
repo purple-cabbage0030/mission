@@ -117,7 +117,7 @@ when not matched then
 
 
 
--- 4. job을 입력받아 해당 job의 평균 급여를 구해주는 함수를 만드세요.(함수명 : avg_sal_job)
+-- 4. job을 입력받아 해당 job의 평균 급여를 구해주는 함수를 만드세요.(함수명: avg_sal_job)
 -- 모범 답안
 create or replace function avg_sal_job(v_job emp.job%type)
 return emp.sal%type 
@@ -131,19 +131,26 @@ begin
     return v_sal;
 end;
 /
+
+-- test 코드
 select avg_sal_job('CLERK') from dual;
 
--- 5. 부서번호를 입력하면 해당 부서에서 근무 사원 수를 반환하는 함수 
+
+
+-- 5. 부서번호를 입력하면 해당 부서에서 근무 사원 수를 반환하는 함수를 작성하세요.(함수명: get_emp_count)
 -- 모범 답안
 
 create or replace function get_emp_count(deptno_ emp.deptno%type)
 return number
 is
-emp_count number;
+    emp_count number;
 begin
-	select count(*) into emp_count
-	from emp
-	where deptno = deptno_;
-	return emp_count;
+    select count(*) into emp_count
+    from emp
+    where deptno = deptno_;
+    return emp_count;
 end;
 /
+
+-- test 코드
+select get_emp_count(10) from dual;
