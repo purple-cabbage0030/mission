@@ -35,3 +35,21 @@ begin
     dbms_output.put_line(v_star);
 end;
 /
+
+--? 연봉(sal*12 + comm)이 높은 상위 3명의 사원번호, 이름, 부서이름, 연봉을 조회하세요.
+
+-- 출력 예시
+     EMPNO ENAME                DNAME                              연봉
+---------- -------------------- ---------------------------- ----------
+      7839 KING                 ACCOUNTING                        60000
+      7902 FORD                 RESEARCH                          36000
+      7566 JONES                RESEARCH                          35700
+      
+select *
+from(
+	select empno, ename, dname, (sal*12 + nvl(comm,0)) as 연봉
+	from emp e, dept d
+	where e.deptno = d.deptno
+	order by (sal*12 + nvl(comm,0)) desc
+)
+where rownum  <= 3;
