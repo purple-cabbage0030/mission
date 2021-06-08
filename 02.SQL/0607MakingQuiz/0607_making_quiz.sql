@@ -141,6 +141,7 @@ insert all
 	into sold values('1007',4)
 	into sold values('1009',11)
 select * from dual;
+commit;
 */
 
 -- 모범 답안
