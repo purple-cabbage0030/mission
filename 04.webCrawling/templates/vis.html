@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="getdata()">유튜브 랭크 정보 저장하기</button>
+    <button onclick="visual()"></button>
+    <div id="pie"></div>
+
+
+    <script>
+        function getdata(){
+            const xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    alert("성공")
+                }
+            };
+            xhttp.open("GET", "getdata");
+            xhttp.send();
+        }
+
+        function visual(){
+            const xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    alert("성공")
+                    // 사진... innerHTML
+                }
+            };
+            xhttp.open("GET", "g1");
+            xhttp.send();
+        }
+
+    </script>
+</body>
+</html>
