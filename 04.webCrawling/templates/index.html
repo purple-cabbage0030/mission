@@ -34,7 +34,7 @@
             const xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
-                    alert("성공")
+                    alert("실시간 데이터 저장 성공")
                 }
             };
             xhttp.open("GET", "getdata");
