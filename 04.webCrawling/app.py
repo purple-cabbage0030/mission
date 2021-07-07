@@ -1,10 +1,4 @@
-import re
-from flask import Flask, request, render_template, jsonify
-import time
-from bs4 import BeautifulSoup
-from selenium import webdriver
-from selenium.webdriver.support.ui import WebDriverWait
-import seaborn as sns
+from flask import Flask, render_template
 from crawler import Crawling
 
 
