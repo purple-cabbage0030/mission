@@ -14,27 +14,34 @@ class Crawling():
         browser = webdriver.Chrome('c:/driver/chromedriver.exe')
         results = []
 
-        for page in range(1,11):
-            url = f"https://youtube-rank.com/board/bbs/board.php?bo_table=youtube&page={page}" 
-            browser.get(url)
-            time.sleep(2)
-            html = browser.page_source
-            soup = BeautifulSoup(html, 'html.parser')
-            channel_list = soup.select('form > table > tbody > tr')
+        try:
+            for page in range(1,11):
+                url = f"https://youtube-rank.com/board/bbs/board.php?bo_table=youtube&page={page}" 
+                browser.get(url)
+                time.sleep(2)
+                html = browser.page_source
+                soup = BeautifulSoup(html, 'html.parser')
+                channel_list = soup.select('form > table > tbody > tr')
 
-            for channel in channel_list:
-                title = channel.select('h1 > a')[0].text.strip() 
-                category = channel.select('p.category')[0].text.strip()
-                subscriber = channel.select('.subscriber_cnt')[0].text 
-                view = channel.select('.view_cnt')[0].text
-                video = channel.select('.video_cnt')[0].text
-                data = [title, category, subscriber, view, video]
-                results.append(data)
+                for channel in channel_list:
+                    title = channel.select('h1 > a')[0].text.strip() 
+                    category = channel.select('p.category')[0].text.strip()
+                    subscriber = channel.select('.subscriber_cnt')[0].text 
+                    view = channel.select('.view_cnt')[0].text
+                    video = channel.select('.video_cnt')[0].text
+                    data = [title, category, subscriber, view, video]
+                    results.append(data)
 
-        df = pd.DataFrame(results)
-        df.columns = ['title', 'category', 'subscriber', 'view', 'video']
+        except Exception as e:
+            print("페이지 파싱 에러", e)
 
-        df.to_excel('./youtube_rank.xlsx', index = False)
+        finally:
+            time.sleep(3)
+            browser.quit()
+            df = pd.DataFrame(results)
+            df.columns = ['title', 'category', 'subscriber', 'view', 'video']
+
+            df.to_excel('./youtube_rank.xlsx', index = False)
 
 
     def visual1():
@@ -87,6 +94,7 @@ class Crawling():
         plt.figure(figsize = (10, 10))
         sns.catplot(x='avgview', y='category', data=pivot_df2, kind='bar')
         plt.savefig("./static/img/plot2.png")
+
 
     def visual3():
         path = 'c:/Windows/Fonts/malgun.ttf'
