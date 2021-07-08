@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         #buttons button{
-            border: 1px solid skyblue;
-            background-color: peachpuff;
+            border: 1px solid rgb(36, 0, 56);
+            background-color: rgb(224, 184, 250);
             color: black;
             padding: 5px;
         } 
@@ -16,16 +16,17 @@
             background-color: plum;
         }
     </style>
-    <title>우리짱</title>
+    <title>유튜브 랭킹 시각화</title>
 </head>
 <body>
-    <h1 align='center'>유튜브 랭킹 시각화</h1>
+    <h1 align="center">유튜브 랭킹 시각화</h1>
+    <h5 align="center">by. 이현수, 이홍주, 정주영A, 최한승</h5>
     <hr color="black"><br>
-    <div id="buttons" align='center'>
-        <button onclick="getdata()">실시간 정보</button> &#32;&#32;&#32;
-        <button onclick="visual1()">카테고리별 구독자수</button>&#32;&#32;&#32;
-        <button onclick="visual2()">카테고리별 평균 조회수</button>&#32;&#32;&#32;
-        <button onclick="visual3()">카테고리별 채널 개수</button>&#32;&#32;&#32;
+    <div id="buttons" align="center">
+        <button onclick="getdata()">실시간 정보</button> &#32;&#32;
+        <button onclick="visual1()">카테고리별 구독자수</button>&#32;&#32;
+        <button onclick="visual2()">카테고리별 평균 조회수</button>&#32;&#32;
+        <button onclick="visual3()">카테고리별 채널 개수</button>&#32;&#32;
     </div>
     <div id="plot" align='center'></div>
 
@@ -57,7 +58,6 @@
             const xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
-
                     document.getElementById("plot").innerHTML = '<img src="./static/img/plot2.png" width=700 height=700>'
                     alert("성공")
                 }
@@ -70,7 +70,6 @@
             const xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
-
                     document.getElementById("plot").innerHTML = '<img src="./static/img/plot3.png" width=700 height=700>'
                     alert("성공")
                 }
