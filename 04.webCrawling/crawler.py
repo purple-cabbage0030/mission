@@ -7,8 +7,6 @@ import matplotlib.pyplot as plt
 from matplotlib import font_manager, rc
 import numpy as np
 
-
-
 class Crawling():
     def crawl_exel():
         browser = webdriver.Chrome('c:/driver/chromedriver.exe')
@@ -43,24 +41,28 @@ class Crawling():
 
             df.to_excel('./youtube_rank.xlsx', index = False)
 
-
     def visual1():
+        # 카테고리별 구독자수
         path = 'c:/Windows/Fonts/malgun.ttf'
         font_name = font_manager.FontProperties(fname = path).get_name()
         rc('font', family = font_name)
 
         df = pd.read_excel('./youtube_rank.xlsx')
 
+        # 데이터 전처리
         df['subscriber'] = df['subscriber'].str.replace('만', '0000')
         df['replaced_subscriber'] = df['subscriber'].astype('int64')
+
+        # pivot table 만들기        
         pivot_df = df.pivot_table(index = 'category', values = 'replaced_subscriber', aggfunc = ['sum','count'])
         pivot_df.columns = ['subscriber_sum', 'category_count']
         pivot_df = pivot_df.reset_index()
         pivot_df = pivot_df.sort_values(by='subscriber_sum', ascending=False)
+
+        # plot 만들기
         plt.figure(figsize = (10, 10))
         plt.pie(pivot_df['subscriber_sum'], labels=pivot_df['category'], autopct='%1.1f%%')
         plt.savefig("./static/img/plot1.png")
-
 
     def visual2():
         # 카테고리별 평균 조회수
@@ -97,22 +99,26 @@ class Crawling():
 
 
     def visual3():
+        # 카테고리별 채널 개수
         path = 'c:/Windows/Fonts/malgun.ttf'
         font_name = font_manager.FontProperties(fname = path).get_name()
         rc('font', family = font_name)
 
         df = pd.read_excel('./youtube_rank.xlsx')
 
+        # 데이터 전처리
         df['view'] = df['view'].str.replace('억', '')
         df['view'] = df['view'].str.replace('만', '0000')
         df['replaced_view'] = df['view'].astype('int64')
 
+        # pivot table 만들기
         pivot_df = df.pivot_table(index = 'category', values = 'replaced_view', aggfunc = ['sum','count'])
         pivot_df.columns = ['view_sum', 'category_count']
         pivot_df = pivot_df.sort_values(by='category_count', ascending=False)
         pivot_df = pivot_df.reset_index()
         pivot_df = pivot_df.head(10)
         
+        # plot 만들기
         plt.figure(figsize = (10, 10))
         sns.catplot(x='category_count', y='category', data=pivot_df, kind='bar')
         plt.savefig("./static/img/plot3.png")
